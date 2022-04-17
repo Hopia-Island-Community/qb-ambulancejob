@@ -39,19 +39,37 @@ function OnDeath()
                     end
                 end
             else
-                NetworkResurrectLocalPlayer(pos.x, pos.y, pos.z + 0.5, heading, true, false)
+                --NetworkResurrectLocalPlayer(pos.x, pos.y, pos.z + 0.5, heading, true, false)
             end
 			
-            SetEntityInvincible(player, true)
-            SetEntityHealth(player, GetEntityMaxHealth(player))
-            if IsPedInAnyVehicle(player, false) then
-                loadAnimDict("veh@low@front_ps@idle_duck")
-                TaskPlayAnim(player, "veh@low@front_ps@idle_duck", "sit", 1.0, 1.0, -1, 1, 0, 0, 0, 0)
-            else
-                loadAnimDict(deadAnimDict)
-                TaskPlayAnim(player, deadAnimDict, deadAnim, 1.0, 1.0, -1, 1, 0, 0, 0, 0)
-            end
-            TriggerServerEvent('hospital:server:ambulanceAlert', Lang:t('info.civ_died'))
+            --SetEntityInvincible(player, true)
+            --SetEntityHealth(player, GetEntityMaxHealth(player))
+            -- if IsPedInAnyVehicle(player, false) then
+            --     loadAnimDict("veh@low@front_ps@idle_duck")
+            --     TaskPlayAnim(player, "veh@low@front_ps@idle_duck", "sit", 1.0, 1.0, -1, 1, 0, 0, 0, 0)
+            -- else
+            --     loadAnimDict(deadAnimDict)
+            --     TaskPlayAnim(player, deadAnimDict, deadAnim, 1.0, 1.0, -1, 1, 0, 0, 0, 0)
+            -- end
+            --TriggerServerEvent('hospital:server:ambulanceAlert', Lang:t('info.civ_died'))
+            local data = exports['cd_dispatch']:GetPlayerInfo()
+            TriggerServerEvent('cd_dispatch:AddNotification', {
+                job_table = {'ambulance'}, 
+                coords = data.coords,
+                title = Lang:t('info.civ_died'),
+                message = 'A '..data.sex..' robbing a store at '..data.street, 
+                flash = 0,
+                unique_id = tostring(math.random(0000000,9999999)),
+                blip = {
+                    sprite = 61, 
+                    scale = 1, 
+                    colour = 8,
+                    flashes = false, 
+                    text = Lang:t('info.civ_died'),
+                    time = (5*60*1000),
+                    sound = 1,
+                }
+            })
         end
     end
 end
@@ -161,24 +179,24 @@ CreateThread(function()
                     end
                 end
 
-                if IsPedInAnyVehicle(ped, false) then
-                    loadAnimDict("veh@low@front_ps@idle_duck")
-                    if not IsEntityPlayingAnim(ped, "veh@low@front_ps@idle_duck", "sit", 3) then
-                        TaskPlayAnim(ped, "veh@low@front_ps@idle_duck", "sit", 1.0, 1.0, -1, 1, 0, 0, 0, 0)
-                    end
-                else
-                    if isInHospitalBed then
-                        if not IsEntityPlayingAnim(ped, inBedDict, inBedAnim, 3) then
-                            loadAnimDict(inBedDict)
-                            TaskPlayAnim(ped, inBedDict, inBedAnim, 1.0, 1.0, -1, 1, 0, 0, 0, 0)
-                        end
-                    else
-                        if not IsEntityPlayingAnim(ped, deadAnimDict, deadAnim, 3) then
-                            loadAnimDict(deadAnimDict)
-                            TaskPlayAnim(ped, deadAnimDict, deadAnim, 1.0, 1.0, -1, 1, 0, 0, 0, 0)
-                        end
-                    end
-                end
+                -- if IsPedInAnyVehicle(ped, false) then
+                --     loadAnimDict("veh@low@front_ps@idle_duck")
+                --     if not IsEntityPlayingAnim(ped, "veh@low@front_ps@idle_duck", "sit", 3) then
+                --         TaskPlayAnim(ped, "veh@low@front_ps@idle_duck", "sit", 1.0, 1.0, -1, 1, 0, 0, 0, 0)
+                --     end
+                -- else
+                --     if isInHospitalBed then
+                --         if not IsEntityPlayingAnim(ped, inBedDict, inBedAnim, 3) then
+                --             loadAnimDict(inBedDict)
+                --             TaskPlayAnim(ped, inBedDict, inBedAnim, 1.0, 1.0, -1, 1, 0, 0, 0, 0)
+                --         end
+                --     else
+                --         if not IsEntityPlayingAnim(ped, deadAnimDict, deadAnim, 3) then
+                --             loadAnimDict(deadAnimDict)
+                --             TaskPlayAnim(ped, deadAnimDict, deadAnim, 1.0, 1.0, -1, 1, 0, 0, 0, 0)
+                --         end
+                --     end
+                -- end
 
                 SetCurrentPedWeapon(ped, `WEAPON_UNARMED`, true)
             elseif InLaststand then
@@ -195,23 +213,41 @@ CreateThread(function()
                     end
 
                     if IsControlJustPressed(0, 47) and not emsNotified then
-                        TriggerServerEvent('hospital:server:ambulanceAlert', Lang:t('info.civ_down'))
+                        --TriggerServerEvent('hospital:server:ambulanceAlert', Lang:t('info.civ_down'))
+                        local data = exports['cd_dispatch']:GetPlayerInfo()
+                        TriggerServerEvent('cd_dispatch:AddNotification', {
+                            job_table = {'ambulance'}, 
+                            coords = data.coords,
+                            title = Lang:t('info.civ_down'),
+                            message = 'A '..data.sex..' robbing a store at '..data.street, 
+                            flash = 0,
+                            unique_id = tostring(math.random(0000000,9999999)),
+                            blip = {
+                                sprite = 61, 
+                                scale = 1, 
+                                colour = 8,
+                                flashes = false, 
+                                text = Lang:t('info.civ_down'),
+                                time = (5*60*1000),
+                                sound = 1,
+                            }
+                        })
                         emsNotified = true
                     end
                 end
 
                 if not isEscorted then
-                    if IsPedInAnyVehicle(ped, false) then
-                        loadAnimDict("veh@low@front_ps@idle_duck")
-                        if not IsEntityPlayingAnim(ped, "veh@low@front_ps@idle_duck", "sit", 3) then
-                            TaskPlayAnim(ped, "veh@low@front_ps@idle_duck", "sit", 1.0, 1.0, -1, 1, 0, 0, 0, 0)
-                        end
-                    else
-                        loadAnimDict(lastStandDict)
-                        if not IsEntityPlayingAnim(ped, lastStandDict, lastStandAnim, 3) then
-                            TaskPlayAnim(ped, lastStandDict, lastStandAnim, 1.0, 1.0, -1, 1, 0, 0, 0, 0)
-                        end
-                    end
+                    -- if IsPedInAnyVehicle(ped, false) then
+                    --     loadAnimDict("veh@low@front_ps@idle_duck")
+                    --     if not IsEntityPlayingAnim(ped, "veh@low@front_ps@idle_duck", "sit", 3) then
+                    --         TaskPlayAnim(ped, "veh@low@front_ps@idle_duck", "sit", 1.0, 1.0, -1, 1, 0, 0, 0, 0)
+                    --     end
+                    -- else
+                    --     loadAnimDict(lastStandDict)
+                    --     if not IsEntityPlayingAnim(ped, lastStandDict, lastStandAnim, 3) then
+                    --         TaskPlayAnim(ped, lastStandDict, lastStandAnim, 1.0, 1.0, -1, 1, 0, 0, 0, 0)
+                    --     end
+                    -- end
                 else
                     if IsPedInAnyVehicle(ped, false) then
                         loadAnimDict("veh@low@front_ps@idle_duck")
