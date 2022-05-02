@@ -41,7 +41,8 @@ function OnDeath()
             else
                 --NetworkResurrectLocalPlayer(pos.x, pos.y, pos.z + 0.5, heading, true, false)
             end
-			
+            
+			SetEntityHealth(player, 0)
             --SetEntityInvincible(player, true)
             --SetEntityHealth(player, GetEntityMaxHealth(player))
             -- if IsPedInAnyVehicle(player, false) then
@@ -116,7 +117,6 @@ end
 
 CreateThread(function()
 	while true do
-		Wait(10)
 		local player = PlayerId()
 		if NetworkIsPlayerActive(player) then
             local playerPed = PlayerPedId()
@@ -146,6 +146,7 @@ CreateThread(function()
                 DeathTimer()
             end
 		end
+        Wait(10)
 	end
 end)
 
