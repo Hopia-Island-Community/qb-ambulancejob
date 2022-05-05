@@ -11,7 +11,7 @@ Config.WipeInventoryOnRespawn = false
 -- Resources Integrations
 
 Config.Integrations.CdDispatch = {
-    activate = false, -- Use cd_dispatch for alerts instead of default alert system
+    activate = true, -- Use cd_dispatch for alerts instead of default alert system
     jobs = {"ambulance"}, -- Table of jobs that receive alerts
     blips = 61, -- Blip displayed on the map
 }
