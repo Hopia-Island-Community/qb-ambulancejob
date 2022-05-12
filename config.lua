@@ -11,9 +11,9 @@ Config.WipeInventoryOnRespawn = false
 -- Resources Integrations
 
 Config.Integrations.CdDispatch = {
-    activate = false, -- Use cd_dispatch for alerts instead of default alert system
+    activate = true, -- Use cd_dispatch for alerts instead of default alert system
     jobs = {"ambulance"}, -- Table of jobs that receive alerts
-    blips = 61, -- Blip displayed on the map
+    blips = 42, -- Blip displayed on the map
 }
 
 Config.Locations = {
@@ -26,16 +26,16 @@ Config.Locations = {
         [2] = vector3(-254.88, 6324.5, 32.58),
     },
     ["vehicle"] = {
-        [1] = vector4(-457.18, -331.99, 34.36, 81.06),
-        [2] = vector4(-234.28, 6329.16, 32.15, 222.5),
+        --[1] = vector4(-457.18, -331.99, 34.36, 81.06),
+        --[2] = vector4(-234.28, 6329.16, 32.15, 222.5),
     },
     ["helicopter"] = {
         [1] = vector4(-486.87, -286.44, 35.49, 25.24),
-        [2] = vector4(-475.43, 5988.353, 31.716, 31.34),
+        --[2] = vector4(-475.43, 5988.353, 31.716, 31.34),
     },
     ["armory"] = {
         [1] = vector3(-453.55, -308.33, 34.91),
-        [2] = vector3(-245.13, 6315.71, 32.82),
+        --[2] = vector3(-245.13, 6315.71, 32.82),
     },
     ["roof"] = {
         [1] = vector4(338.5, -583.85, 74.16, 245.5),
@@ -209,7 +209,7 @@ Config.AIHealTimer = 20
 --[[
     BleedTickRate : How much time, in seconds, between bleed ticks
 ]]
-Config.BleedTickRate = 30
+Config.BleedTickRate = 20
 
 --[[
     BleedMovementTick : How many seconds is taken away from the bleed tick rate if the player is walking, jogging, or sprinting
