@@ -38,20 +38,17 @@ local function LoadAnimation(dict)
     end
 end
 
-function SetLaststand(bool, spawn)
+function SetLaststand(bool)
     local ped = PlayerPedId()
     if bool then
-        
+
         while GetEntitySpeed(ped) > 0.5 do Wait(10) end
-        
+
         local pos = GetEntityCoords(ped)
         local heading = GetEntityHeading(ped)
 
         TriggerServerEvent("InteractSound_SV:PlayOnSource", "demo", 0.1)
-
         LaststandTime = Laststand.ReviveInterval
-
-        local ped = PlayerPedId()
         if IsPedInAnyVehicle(ped) then
             local veh = GetVehiclePedIsIn(ped)
             local vehseats = GetVehicleModelNumberOfSeats(GetHashKey(GetEntityModel(veh)))
@@ -64,8 +61,8 @@ function SetLaststand(bool, spawn)
             end
         else
             --NetworkResurrectLocalPlayer(pos.x, pos.y, pos.z + 0.5, heading, true, false)
-        end		
-		
+        end
+
         --SetEntityHealth(ped, 150)
 
         --? delkete animation
@@ -84,7 +81,7 @@ function SetLaststand(bool, spawn)
         CreateThread(function()
             while InLaststand do
                 ped = PlayerPedId()
-                player = PlayerId()
+                local player = PlayerId()
                 if LaststandTime - 1 > Laststand.MinimumRevive then
                     LaststandTime = LaststandTime - 1
                     Config.DeathTime = LaststandTime
@@ -96,11 +93,7 @@ function SetLaststand(bool, spawn)
                     SetLaststand(false)
                     local killer_2, killerWeapon = NetworkGetEntityKillerOfPlayer(player)
                     local killer = GetPedSourceOfDeath(ped)
-
-                    if killer_2 ~= 0 and killer_2 ~= -1 then
-                        killer = killer_2
-                    end
-
+                    if killer_2 ~= 0 and killer_2 ~= -1 then killer = killer_2 end
                     local killerId = NetworkGetPlayerIndexFromPed(killer)
                     local killerName = killerId ~= -1 and GetPlayerName(killerId) .. " " .. "("..GetPlayerServerId(killerId)..")" or Lang:t('info.self_death')
                     local weaponLabel = Lang:t('info.wep_unknown')
@@ -162,7 +155,6 @@ end)
 
 RegisterNetEvent('hospital:client:HelpPerson', function(targetId)
     local ped = PlayerPedId()
-    isHealingPerson = true
     QBCore.Functions.Progressbar("hospital_revive", Lang:t('progress.revive'), math.random(30000, 60000), false, true, {
         disableMovement = false,
         disableCarMovement = false,
@@ -173,12 +165,10 @@ RegisterNetEvent('hospital:client:HelpPerson', function(targetId)
         anim = healAnim,
         flags = 1,
     }, {}, {}, function() -- Done
-        isHealingPerson = false
         ClearPedTasks(ped)
         QBCore.Functions.Notify(Lang:t('success.revived'), 'success')
         TriggerServerEvent("hospital:server:RevivePlayer", targetId)
     end, function() -- Cancel
-        isHealingPerson = false
         ClearPedTasks(ped)
         QBCore.Functions.Notify(Lang:t('error.canceled'), "error")
     end)
