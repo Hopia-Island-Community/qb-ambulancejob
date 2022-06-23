@@ -34,8 +34,8 @@ Config.Locations = {
         [2] = vector4(-1832.06, -379.99, 58.04, 138.32),
     },
     ["armory"] = {
-        [1] = vector3(-1865.1, -325.94, 49.45),
-        [2] = vector3(-1874.49, -305.26, 49.47),
+        [1] = vector3(-1831.84, -380.35, 49.4),
+        --[2] = vector3(-1874.49, -305.26, 49.47),
     },
     ["roof"] = {
         --[1] = vector4(338.5, -583.85, 74.16, 245.5),
@@ -44,7 +44,7 @@ Config.Locations = {
         --[1] = vector3(298.44, -599.7, 43.29),
     },
     ["stash"] = {
-        [1] = vector3(-456.09, -309.28, 34.91),
+        --[1] = vector3(-456.09, -309.28, 34.91),
     },
     ["beds"] = {
         [1] = {coords = vector4(-1885.83, -309.92, 54.52, 52.4), taken = false, model = 1570477186},
@@ -117,7 +117,7 @@ Config.Items = {
     items = {
         [1] = {
             name = "radio",
-            price = 0,
+            price = 100,
             amount = 50,
             info = {},
             type = "item",
@@ -125,7 +125,7 @@ Config.Items = {
         },
         [2] = {
             name = "bandage",
-            price = 0,
+            price = 5,
             amount = 50,
             info = {},
             type = "item",
@@ -133,7 +133,7 @@ Config.Items = {
         },
         [3] = {
             name = "painkillers",
-            price = 0,
+            price = 10,
             amount = 50,
             info = {},
             type = "item",
@@ -141,7 +141,7 @@ Config.Items = {
         },
         [4] = {
             name = "firstaid",
-            price = 0,
+            price = 20,
             amount = 50,
             info = {},
             type = "item",
@@ -149,7 +149,7 @@ Config.Items = {
         },
         [5] = {
             name = "weapon_flashlight",
-            price = 0,
+            price = 100,
             amount = 50,
             info = {},
             type = "item",
@@ -157,7 +157,7 @@ Config.Items = {
         },
         [6] = {
             name = "weapon_fireextinguisher",
-            price = 0,
+            price = 100,
             amount = 50,
             info = {},
             type = "item",
