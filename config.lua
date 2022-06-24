@@ -1,4 +1,6 @@
 Config = {}
+Config.Integrations = {}
+
 Config.UseTarget = GetConvar('UseTarget', 'false') == 'true' -- Use qb-target interactions (don't change this, go to your server.cfg and add setr UseTarget true)
 Config.MinimalDoctors = 2 -- How many players with the ambulance job to prevent the hospital check-in system from being used
 Config.WipeInventoryOnRespawn = true -- Enable or disable removing all the players items when they respawn at the hospital
