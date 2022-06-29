@@ -58,7 +58,7 @@ function OnDeath()
                 job_table = {'ambulance'},
                 coords = data.coords,
                 title = Lang:t('info.civ_died'),
-                message = 'A '..data.sex..' robbing a store at '..data.street,
+                message = 'Un '..data.sex..' est dans le coma à '..data.street,
                 flash = 0,
                 unique_id = tostring(math.random(0000000,9999999)),
                 blip = {
