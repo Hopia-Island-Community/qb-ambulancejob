@@ -184,8 +184,8 @@ Config.Items = { -- Items found in the ambulance shop for players with the ambul
             slot = 5,
         },
         [6] = {
-            name = "weapon_fireextinguisher",
-            price = 100,
+            name = "defib",
+            price = 1000,
             amount = 50,
             info = {},
             type = "item",
