@@ -884,25 +884,25 @@ end)
 -- Convar turns into a boolean
 if Config.UseTarget then
     CreateThread(function()
-        for k, v in pairs(Config.Locations["checking"]) do
-            exports['qb-target']:AddBoxZone("checking"..k, vector3(v.x, v.y, v.z), 3.5, 2, {
-                name = "checking"..k,
-                heading = -72,
-                debugPoly = false,
-                minZ = v.z - 2,
-                maxZ = v.z + 2,
-            }, {
-                options = {
-                    {
-                        type = "client",
-                        icon = "fa fa-clipboard",
-                        event = "qb-ambulancejob:checkin",
-                        label = "Check In",
-                    }
-                },
-                distance = 1.5
-            })
-        end
+        --for k, v in pairs(Config.Locations["checking"]) do
+        --    exports['qb-target']:AddBoxZone("checking"..k, vector3(v.x, v.y, v.z), 3.5, 2, {
+        --        name = "checking"..k,
+        --        heading = -72,
+        --        debugPoly = false,
+        --        minZ = v.z - 2,
+        --        maxZ = v.z + 2,
+        --    }, {
+        --        options = {
+        --            {
+        --                type = "client",
+        --                icon = "fa fa-clipboard",
+        --                event = "qb-ambulancejob:checkin",
+        --                label = "Check In",
+        --            }
+        --        },
+        --        distance = 1.5
+        --    })
+        --end
 
         for k, v in pairs(Config.Locations["beds"]) do
             exports['qb-target']:AddBoxZone("beds"..k,  v.coords, 2.5, 2.3, {
