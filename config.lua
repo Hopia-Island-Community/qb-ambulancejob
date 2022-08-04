@@ -42,12 +42,12 @@ Config.Integrations.CdDispatch = {
 
 Config.Locations = { -- Edit the various interaction points for players or create new ones
     ["checking"] = {
-	    [1] = vector3(-1851.55, -339.19, 49.44),
+	    --[1] = vector3(-1851.55, -339.19, 49.44),
 	   -- [2] = vector3(-254.54, 6331.78, 32.43), -- paleto
     },
     ["duty"] = {
-        [1] = vector3(-1853.82, -337.28, 49.44),
-        [2] = vector3(-1864.78, -321.33, 49.46),
+        --[1] = vector3(-1853.82, -337.28, 49.44),
+        --[2] = vector3(-1864.78, -321.33, 49.46),
     },
     ["vehicle"] = {
         --[1] = vector4(-457.18, -331.99, 34.36, 81.06),
@@ -58,7 +58,7 @@ Config.Locations = { -- Edit the various interaction points for players or creat
         [2] = vector4(-1832.06, -379.99, 58.04, 138.32),
     },
     ["armory"] = {
-        [1] = vector3(-1831.84, -380.35, 49.4),
+        --[1] = vector3(-1831.84, -380.35, 49.4),
         --[2] = vector3(-1874.49, -305.26, 49.47),
     },
     ["roof"] = {
